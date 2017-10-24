@@ -18,6 +18,16 @@ npm start
 
 See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this app.
 
+## Config
+
+This app can be configured to ignore PRs with specific labels. The default configuration is:
+
+`.github/pr-issue.yml`
+```yml
+ignore:
+- release
+```
+
 [build-badge]: https://travis-ci.org/uber-web/probot-app-pr-issue.svg?branch=master
 [build-href]: https://travis-ci.org/uber-web/probot-app-pr-issue
 [deps-badge]: https://david-dm.org/uber-web/probot-app-pr-issue.svg

@@ -14,6 +14,30 @@ module.exports = robot => {
     const {github} = context;
     const pr = context.payload.pull_request;
 
+    setStatus({
+      state: 'pending',
+      description: 'Checking if PR correctly references an issue',
+    });
+
+    const config = await context.config('pr-issue.yml', {
+      ignore: ['release'],
+    });
+
+    const labels = await github.issues.getIssueLabels(context.issue());
+
+    const shouldIgnore = labels.data.some(label => {
+      let name = label.name.toLowerCase();
+      return config.ignore.some(ignored => ignored === name);
+    });
+
+    if (shouldIgnore) {
+      setStatus({
+        state: 'success',
+        description: 'PR does not need to reference an issue',
+      });
+      return;
+    }
+
     function hasIssue() {
       const issues = pr.body.match(issueRegex());
       if (issues !== null) {
