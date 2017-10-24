@@ -1,6 +1,6 @@
 {
   "name": "probot-app-pr-issue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub App that ensures PRs have an associated issue",
   "author": "Ryan Tsao <ryan.j.tsao@gmail.com>",
   "contributors": [],
