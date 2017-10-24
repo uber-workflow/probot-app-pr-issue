@@ -64,7 +64,7 @@ module.exports = robot => {
       const params = Object.assign(
         {
           sha: pr.head.sha,
-          context: 'pr_issue',
+          context: 'probot/pr-issue',
         },
         status,
       );
