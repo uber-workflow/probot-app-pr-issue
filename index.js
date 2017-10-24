@@ -13,17 +13,26 @@ module.exports = robot => {
   async function check(context) {
     const {github} = context;
     const pr = context.payload.pull_request;
-    const issues = pr.body.match(issueRegex());
-    const status =
-      issues === null
-        ? {
-            state: 'failure',
-            description: 'PR does not reference an issue',
-          }
-        : {
-            state: 'success',
-            description: 'PR references an issue',
-          };
+
+    function hasIssue() {
+      const issues = pr.body.match(issueRegex());
+      if (issues !== null) {
+        return true;
+      }
+      const repo = context.payload.repository.full_name;
+      const urlRegex = new RegExp(`${repo}/issues/\\d+`, 'g');
+      return pr.body.match(urlRegex) !== null;
+    }
+
+    const status = hasIssue()
+      ? {
+          state: 'success',
+          description: 'PR references an issue',
+        }
+      : {
+          state: 'failure',
+          description: 'PR does not reference an issue',
+        };
 
     setStatus(status);
 

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "issue-regex": "^1.0.0",
-    "probot": "^0.11.0"
+    "probot": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^4.8.0",
