@@ -7,8 +7,10 @@
 const issueRegex = require('issue-regex');
 
 module.exports = robot => {
-  robot.on('pull_request.created', check);
+  robot.on('pull_request.opened', check);
   robot.on('pull_request.edited', check);
+  robot.on('pull_request.labeled', check);
+  robot.on('pull_request.unlabeled', check);
 
   async function check(context) {
     const {github} = context;
