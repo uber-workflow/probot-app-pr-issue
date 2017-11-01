@@ -11,6 +11,7 @@ module.exports = robot => {
   robot.on('pull_request.edited', check);
   robot.on('pull_request.labeled', check);
   robot.on('pull_request.unlabeled', check);
+  robot.on('pull_request.synchronized', check);
 
   async function check(context) {
     const {github} = context;
