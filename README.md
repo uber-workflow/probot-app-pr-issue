@@ -28,8 +28,8 @@ ignore:
 - release
 ```
 
-[build-badge]: https://travis-ci.org/uber-web/probot-app-pr-issue.svg?branch=master
-[build-href]: https://travis-ci.org/uber-web/probot-app-pr-issue
+[build-badge]: https://badge.buildkite.com/f610b44e27ccb64b9ba97d9c659c13f83313be09bfb7c6f6b0.svg?branch=master
+[build-href]: https://buildkite.com/uberopensource/probot-app-pr-issue
 [deps-badge]: https://david-dm.org/uber-web/probot-app-pr-issue.svg
 [deps-href]: https://david-dm.org/uber-web/probot-app-pr-issue
 [npm-badge]: https://badge.fury.io/js/probot-app-pr-issue.svg
