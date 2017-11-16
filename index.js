@@ -42,13 +42,13 @@ module.exports = robot => {
     }
 
     function hasIssue() {
-      const issues = pr.body.match(issueRegex());
+      const issues = matchMaybe(pr.body, issueRegex());
       if (issues !== null) {
         return true;
       }
       const repo = context.payload.repository.full_name;
       const urlRegex = new RegExp(`${repo}/issues/\\d+`, 'g');
-      return pr.body.match(urlRegex) !== null;
+      return matchMaybe(pr.body, urlRegex) !== null;
     }
 
     const status = hasIssue()
@@ -75,3 +75,7 @@ module.exports = robot => {
     }
   }
 };
+
+function matchMaybe(maybeString, pattern) {
+  return typeof maybeString === 'string' ? maybeString.match(pattern) : null;
+}
