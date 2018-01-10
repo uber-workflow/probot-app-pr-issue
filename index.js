@@ -23,15 +23,23 @@ module.exports = robot => {
     });
 
     const config = await context.config('pr-issue.yml', {
-      ignore: ['release'],
+      ignore: ['release', 'docs'],
     });
 
     const labels = await github.issues.getIssueLabels(context.issue());
 
-    const shouldIgnore = labels.data.some(label => {
-      let name = label.name.toLowerCase();
-      return config.ignore.some(ignored => ignored === name);
-    });
+    let shouldIgnore = false;
+
+    // PRs with whitelisted labels don't need to reference an issue
+    shouldIgnore =
+      shouldIgnore ||
+      labels.data.some(label => {
+        let name = label.name.toLowerCase();
+        return config.ignore.some(ignored => ignored === name);
+      });
+
+    // Bots don't need to reference an issue
+    shouldIgnore = shouldIgnore || pr.user.type === 'Bot';
 
     if (shouldIgnore) {
       setStatus({

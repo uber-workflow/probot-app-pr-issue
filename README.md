@@ -26,6 +26,7 @@ This app can be configured to ignore PRs with specific labels. The default confi
 ```yml
 ignore:
 - release
+- docs
 ```
 
 [build-badge]: https://badge.buildkite.com/f610b44e27ccb64b9ba97d9c659c13f83313be09bfb7c6f6b0.svg?branch=master
