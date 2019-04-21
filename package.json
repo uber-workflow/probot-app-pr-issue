@@ -12,7 +12,7 @@
     "fix": "eslint . --fix"
   },
   "dependencies": {
-    "issue-regex": "2.0.0",
+    "issue-regex": "3.1.0",
     "probot": "7.5.0"
   },
   "devDependencies": {
